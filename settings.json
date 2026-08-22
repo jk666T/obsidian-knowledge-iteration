@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"{{VAULT_PATH}}/.claude/hooks/check-inbox.sh\"",
+            "timeout": 10,
+            "statusMessage": "检查知识库收件箱…"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+# ── Obsidian 工作区缓存（不入库）──
+.obsidian/workspace*.json
+.obsidian/cache/
+.obsidian/graph.json
+.obsidian/plugins/*/data.json
+
+# ── 操作系统 / 编辑器垃圾 ──
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+
+# ── 临时文件 ──
+*~
+*.tmp
+*.log
+
+# ── Claude Code 本地会话（可选）──
+# 注：.claude/skills 与 .claude/hooks 是配置，应当入库；
+# 只忽略易变的本地会话状态（若你不希望提交它们）：
+.claude/todos/
+.claude/sessions/

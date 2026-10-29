@@ -4,7 +4,7 @@
 > Built on Andrej Karpathy's "Zero-to-Hero / Training Loop" philosophy — train your knowledge as a model using the K-Loop: **Try → Gap → Cause → Change → Verify**.
 > 🇨🇳 中文版: [README.md](./README.md)
 
-![License](https://img.shields.io/badge/License-Apache_2.0-blue) ![Platforms](https://img.shields.io/badge/Platforms-Windows-blue) ![Obsidian](https://img.shields.io/badge/Powered_by-Obsidian-7C3AED) ![Claude Code](https://img.shields.io/badge/Claude_Code-Skills-4B0082)
+![License](https://img.shields.io/badge/License-NonCommercial-orange) ![Platforms](https://img.shields.io/badge/Platforms-Windows-blue) ![Obsidian](https://img.shields.io/badge/Powered_by-Obsidian-7C3AED) ![Claude Code](https://img.shields.io/badge/Claude_Code-Skills-4B0082)
 
 ---
 
@@ -18,7 +18,7 @@ knowledge-iteration-starter/
 ├── install.ps1                       ← Install logic (called by install.bat)
 ├── install.sh                        ← macOS/Linux installer (untested, not recommended yet)
 ├── settings.json                     ← Claude Code config template
-├── LICENSE                           ← Apache License 2.0
+├── LICENSE                           ← Non-Commercial Learning License 1.1
 ├── .gitignore                        ← Obsidian ignore rules
 ├── hooks/
 │   └── check-inbox.sh                ← "Hook": auto-reminds you to tidy the inbox on startup
@@ -182,7 +182,7 @@ A: `install.sh` is kept in the repo but has not been tested yet, so documentatio
 
 ## 📜 License
 
-Apache License 2.0 — free to use, modify, and distribute, including commercially, provided copyright and license notices are retained. See [LICENSE](./LICENSE).
+Non-Commercial Learning License 1.1 — for learning/research purposes only; commercial use prohibited. See [LICENSE](./LICENSE).
 
 ---
 

@@ -4,7 +4,7 @@
 > 基于 Andrej Karpathy 的「从零构建 / 训练循环」哲学，用 K-Loop 五步法（试→差→因→改→验）把你的知识当作模型来训练。
 > 🇬🇧 English: [README.en.md](./README.en.md)
 
-![License](https://img.shields.io/badge/License-Apache_2.0-blue) ![Platforms](https://img.shields.io/badge/Platforms-Windows-blue) ![Obsidian](https://img.shields.io/badge/Powered_by-Obsidian-7C3AED) ![Claude Code](https://img.shields.io/badge/Claude_Code-Skills-4B0082)
+![License](https://img.shields.io/badge/License-NonCommercial-orange) ![Platforms](https://img.shields.io/badge/Platforms-Windows-blue) ![Obsidian](https://img.shields.io/badge/Powered_by-Obsidian-7C3AED) ![Claude Code](https://img.shields.io/badge/Claude_Code-Skills-4B0082)
 
 ---
 
@@ -18,7 +18,7 @@
 ├── install.ps1                      ← 安装逻辑本体（由 install.bat 调用）
 ├── install.sh                       ← Mac/Linux 安装脚本（未实测，暂不推荐）
 ├── settings.json                    ← 配置文件模板
-├── LICENSE                          ← Apache License 2.0
+├── LICENSE                          ← 非商业学习使用许可证 1.1
 ├── .gitignore                       ← Obsidian 忽略规则
 ├── hooks/
 │   └── check-inbox.sh               ← 「钩子」：启动时自动提醒整理收件箱
@@ -178,7 +178,7 @@ A: 仓库保留了 `install.sh`，但尚未实测，文档暂不承诺；请优�
 
 ## 📜 许可证
 
-Apache License 2.0 — 可自由使用、修改、分发（含商业用途），需保留版权与许可声明。详见 [LICENSE](./LICENSE)。
+非商业学习使用许可证 1.1 — 仅限学习/研究使用，禁止商业用途。详见 [LICENSE](./LICENSE)。
 
 ---
 

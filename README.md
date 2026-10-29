@@ -4,7 +4,7 @@
 > 基于 Andrej Karpathy 的「从零构建 / 训练循环」哲学，用 K-Loop 五步法（试→差→因→改→验）把你的知识当作模型来训练。
 > 🇬🇧 English: [README.en.md](./README.en.md)
 
-![License](https://img.shields.io/badge/License-NonCommercial-orange) ![Platforms](https://img.shields.io/badge/Platforms-Windows%20%7C%20macOS%20%7C%20Linux-blue) ![Obsidian](https://img.shields.io/badge/Powered_by-Obsidian-7C3AED) ![Claude Code](https://img.shields.io/badge/Claude_Code-Skills-4B0082)
+![License](https://img.shields.io/badge/License-Apache_2.0-blue) ![Platforms](https://img.shields.io/badge/Platforms-Windows-blue) ![Obsidian](https://img.shields.io/badge/Powered_by-Obsidian-7C3AED) ![Claude Code](https://img.shields.io/badge/Claude_Code-Skills-4B0082)
 
 ---
 
@@ -14,16 +14,19 @@
 知识库启动套件/
 ├── README.md                        ← 本文件：安装指南
 ├── README.en.md                     ← 英文版安装指南
-├── install.bat                      ← Windows 一键安装（双击）
-├── install.sh                       ← Mac/Linux 一键安装
+├── install.bat                      ← Windows 一键安装启动器（双击）
+├── install.ps1                      ← 安装逻辑本体（由 install.bat 调用）
+├── install.sh                       ← Mac/Linux 安装脚本（未实测，暂不推荐）
 ├── settings.json                    ← 配置文件模板
-├── LICENSE                          ← 非商用学习许可证
+├── LICENSE                          ← Apache License 2.0
 ├── .gitignore                       ← Obsidian 忽略规则
 ├── hooks/
 │   └── check-inbox.sh               ← 「钩子」：启动时自动提醒整理收件箱
 ├── skills/
 │   ├── organize-inbox/SKILL.md      ← 「整理收件箱」技能
-│   └── knowledge-iteration/SKILL.md ← 「知识迭代」技能
+│   ├── knowledge-iteration/SKILL.md ← 「知识迭代」技能
+│   ├── knowledge-base-qa/SKILL.md   ← 「知识库问答」技能（实质问题自动查库）
+│   └── weekly-report/SKILL.md       ← 「周报」技能（每周复盘）
 ├── templates/                       ← 5 个模板文件
 └── core-docs/                       ← 核心文档
 ```
@@ -36,18 +39,17 @@
 
 - **Obsidian** 已安装
 - **Claude Code** 已安装（终端能运行 `claude` 命令）
-- 推荐装 **Dataview 插件**（让仪表盘自动渲染，不装也能用）
+- （推荐）装 **Dataview** 插件，让仪表盘自动渲染（详见 FAQ）
 
 ### 方法一：双击安装（推荐）
 
-| 你的系统 | 怎么做 |
-| :-- | :-- |
-| **Windows** | 双击 **`install.bat`** |
-| **Mac / Linux** | 打开终端，拖入 **`install.sh`** 回车，或运行 `bash install.sh` |
+**Windows**：双击 **`install.bat`**。
 
 脚本会问你：**「你的 Obsidian vault 路径是什么？」**
 
-输入绝对路径（例如 `D:/MyVault` 或 `/Users/you/vault`）→ 回车 → **30 秒装完**。
+输入绝对路径（例如 `D:/MyVault`）→ 回车 → **30 秒装完**。
+
+> `install.bat` 只是启动器（纯 ASCII），真正的安装逻辑在 `install.ps1`（UTF-8 BOM，避免中文乱码）。两个文件必须放在同一目录。装完会做内容级自检（编码、frontmatter、`settings.json` 可解析、无占位符残留）。
 
 ### 方法二：手动安装
 
@@ -132,6 +134,8 @@
 | :-- | :-- |
 | 把随手记入环 | **「整理收件箱」** |
 | 迭代一个知识点 | **「迭代 [[概念名]]」** |
+| 任何知识/方法/决策问题 | **直接问**（自动先查库，时效内容联网核实） |
+| 每周复盘 | **「写周报」** |
 | 跳过归因直接重试 | **「违规」** |
 | 连续卡壳 3 轮以上 | **「刹车」** |
 | 跑一轮重建测试 | **「重建测试 [[概念名]]」** |
@@ -153,7 +157,7 @@
 ## ❓ 常见问题
 
 **Q: 需要装什么 Obsidian 插件？**
-A: 核心系统纯 Markdown 即可运行。推荐安装 **Dataview**。
+A: 核心系统纯 Markdown 即可运行。推荐装 **Dataview**（让仪表盘自动渲染）；不装也能用。
 
 **Q: 技能文件放哪里？**
 A: 必须放 `.claude/skills/`，Claude Code 只从这里加载。
@@ -164,11 +168,17 @@ A: 不必须，改完名同步更新 SKILL.md 路径即可。
 **Q: 知识原子能跨库迁移吗？**
 A: 可以。一个概念 = 一个文件夹，直接复制到新库即可。
 
+**Q: 为什么有两个安装文件（`install.bat` / `install.ps1`）？**
+A: `install.bat` 是纯 ASCII 启动器，负责 `chcp 65001` 后调用 `install.ps1`；`install.ps1` 才是逻辑本体（UTF-8 带 BOM，用 .NET 读写文件，避免 PowerShell 5.1 按 GBK 解码导致的全量乱码）。两者必须同目录，缺一不可。
+
+**Q: Mac / Linux 能用吗？**
+A: 仓库保留了 `install.sh`，但尚未实测，文档暂不承诺；请优先使用 Windows。
+
 ---
 
 ## 📜 许可证
 
-非商用学习许可证 1.1 — 仅限学习/研究使用，禁止商用。详见 [LICENSE](./LICENSE)。
+Apache License 2.0 — 可自由使用、修改、分发（含商业用途），需保留版权与许可声明。详见 [LICENSE](./LICENSE)。
 
 ---
 

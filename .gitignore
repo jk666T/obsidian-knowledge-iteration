@@ -1,8 +1,23 @@
-# ── Obsidian 工作区缓存（不入库）──
-.obsidian/workspace*.json
-.obsidian/cache/
-.obsidian/graph.json
+# ── Obsidian 插件 / 配置 ──
+# 说明：`.obsidian/` 仅随包 zip 分发，**GitHub 仓库不提交**（含插件与通用配置，避免个人状态库随包外泄）；
+# 整体忽略。下方细粒度规则保留作冗余（若未来将 .obsidian 纳入版本控制时仍生效）：
+.obsidian/
+.obsidian/workspace.json
+.obsidian/app.json
 .obsidian/plugins/*/data.json
+
+# ── AnyContent 导入后端：不在 GitHub 仓库提交（仅随包 zip 分发）──
+anycontent-obsidian-backend/
+
+# ── （冗余保留）后端运行时用户配置（含 API Key，勿提交/勿进包）──
+anycontent-obsidian-backend/backend.config.bat
+
+# ── （冗余保留）运行中止留下的半成品/临时文件（勿进包）──
+anycontent-obsidian-backend/tools/*.part
+anycontent-obsidian-backend/tools/ffmpeg-download.zip
+anycontent-obsidian-backend/tools/uv-download.zip
+anycontent-obsidian-backend/tools/ffmpeg-extract/
+anycontent-obsidian-backend/tools/uv-extract/
 
 # ── 操作系统 / 编辑器垃圾 ──
 .DS_Store

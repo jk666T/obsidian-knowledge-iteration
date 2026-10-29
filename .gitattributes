@@ -1,2 +1,10 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# ── 编码/换行铁律（见交接文档 §3.2）──
+# 仓库内统一存 LF；检出时按类型还原，避免 Windows autocrlf 把 .sh / SKILL.md 变成 CRLF
+*.bat   text eol=crlf
+*.ps1   text eol=lf
+*.sh    text eol=lf
+*.md    text eol=lf
+*.json  text eol=lf

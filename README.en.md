@@ -4,7 +4,7 @@
 > Built on Andrej Karpathy's "Zero-to-Hero / Training Loop" philosophy — train your knowledge as a model using the K-Loop: **Try → Gap → Cause → Change → Verify**.
 > 🇨🇳 中文版: [README.md](./README.md)
 
-![License](https://img.shields.io/badge/License-NonCommercial-orange) ![Platforms](https://img.shields.io/badge/Platforms-Windows%20%7C%20macOS%20%7C%20Linux-blue) ![Obsidian](https://img.shields.io/badge/Powered_by-Obsidian-7C3AED) ![Claude Code](https://img.shields.io/badge/Claude_Code-Skills-4B0082)
+![License](https://img.shields.io/badge/License-Apache_2.0-blue) ![Platforms](https://img.shields.io/badge/Platforms-Windows-blue) ![Obsidian](https://img.shields.io/badge/Powered_by-Obsidian-7C3AED) ![Claude Code](https://img.shields.io/badge/Claude_Code-Skills-4B0082)
 
 ---
 
@@ -14,16 +14,19 @@
 knowledge-iteration-starter/
 ├── README.md                         ← Install guide (中文)
 ├── README.en.md                      ← This file: install guide (EN)
-├── install.bat                       ← Windows one-click install (double-click)
-├── install.sh                        ← Mac / Linux one-click install
+├── install.bat                       ← Windows one-click launcher (double-click)
+├── install.ps1                       ← Install logic (called by install.bat)
+├── install.sh                        ← macOS/Linux installer (untested, not recommended yet)
 ├── settings.json                     ← Claude Code config template
-├── LICENSE                           ← Non-Commercial Learning License
+├── LICENSE                           ← Apache License 2.0
 ├── .gitignore                        ← Obsidian ignore rules
 ├── hooks/
 │   └── check-inbox.sh                ← "Hook": auto-reminds you to tidy the inbox on startup
 ├── skills/
 │   ├── organize-inbox/SKILL.md       ← "整理收件箱 / Tidy the inbox" skill
-│   └── knowledge-iteration/SKILL.md  ← "知识迭代 / Knowledge iteration" skill
+│   ├── knowledge-iteration/SKILL.md  ← "知识迭代 / Knowledge iteration" skill
+│   ├── knowledge-base-qa/SKILL.md    ← "知识库问答 / Knowledge-base Q&A" skill (auto-queries the vault)
+│   └── weekly-report/SKILL.md        ← "周报 / Weekly review" skill
 ├── templates/                        ← 5 template files (atom note, iteration log, rebuild, compressed, teaching)
 └── core-docs/                        ← Core docs (protocol, flowchart, dashboard)
 ```
@@ -36,18 +39,17 @@ knowledge-iteration-starter/
 
 - **Obsidian** installed
 - **Claude Code** installed (you can run `claude` in your terminal)
-- **Dataview plugin** recommended — auto-renders the dashboard (works fine without it too)
+- (Optional) **Dataview** plugin recommended for the dashboard (see FAQ)
 
 ### Method 1: Double-click install (recommended)
 
-| Your OS | What to do |
-| :-- | :-- |
-| **Windows** | Double-click **`install.bat`** |
-| **Mac / Linux** | Open a terminal, drag-and-drop **`install.sh`**, or run `bash install.sh` |
+**Windows**: Double-click **`install.bat`**.
 
 The script asks: **"What is your Obsidian vault path?"**
 
-Enter the absolute path (e.g. `D:/MyVault` or `/Users/you/vault`) → Enter → **installed in ~30 seconds**.
+Enter the absolute path (e.g. `D:/MyVault`) → Enter → **installed in ~30 seconds**.
+
+> `install.bat` is only a launcher (pure ASCII); the actual logic lives in `install.ps1` (UTF-8 with BOM, avoids mojibake). Keep both files in the same directory. The installer runs content-level self-checks (encoding, frontmatter, `settings.json` parseability, no leftover placeholders).
 
 ### Method 2: Manual install
 
@@ -134,6 +136,8 @@ capture → 00-收件箱 (inbox)
 | :-- | :-- |
 | Put a captured note into the loop | **「整理收件箱」** |
 | Iterate a concept | **「迭代 [[概念名]]」** |
+| Any knowledge / method / decision question | **Just ask** (queries the vault first, verifies time-sensitive facts online) |
+| Weekly review | **「写周报」** |
 | Skipped a step on purpose? | **「违规」** (violation → fall back and redo that step) |
 | Stuck for 3+ rounds | **「刹车」** (brake → stop patching, return to first principles) |
 | Run a rebuild test | **「重建测试 [[概念名]]」** |
@@ -157,7 +161,7 @@ capture → 00-收件箱 (inbox)
 ## ❓ FAQ
 
 **Q: Which Obsidian plugins do I need?**
-A: The core system runs on plain Markdown. **Dataview** is recommended for the dashboard.
+A: The core system runs on plain Markdown. **Dataview** is recommended for dashboard rendering; everything else works without it.
 
 **Q: Where do skill files have to go?**
 A: They MUST be in `.claude/skills/` — Claude Code only loads skills from there.
@@ -168,11 +172,17 @@ A: No. Rename them and update the paths in `SKILL.md` accordingly.
 **Q: Can knowledge atoms survive a vault migration?**
 A: Yes. One concept = one folder; just copy the folder into the new vault.
 
+**Q: Why are there two installer files (`install.bat` / `install.ps1`)?**
+A: `install.bat` is a pure-ASCII launcher that switches the console to UTF-8 and calls `install.ps1`; the real logic is in `install.ps1` (UTF-8 with BOM, .NET file I/O), which avoids the mojibake caused by PowerShell 5.1 decoding UTF-8 as GBK. Both files must stay in the same folder.
+
+**Q: Does it work on macOS / Linux?**
+A: `install.sh` is kept in the repo but has not been tested yet, so documentation does not promise it. Windows is recommended for now.
+
 ---
 
 ## 📜 License
 
-Non-Commercial Learning License 1.1 — for learning/research purposes only; commercial use prohibited. See [LICENSE](./LICENSE).
+Apache License 2.0 — free to use, modify, and distribute, including commercially, provided copyright and license notices are retained. See [LICENSE](./LICENSE).
 
 ---
 
